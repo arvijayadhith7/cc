@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Civic Companion - About Us</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .about-page {
+            min-height: 100vh;
+            background: #FAFAFA;
+            padding-top: 76px;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D1F1F 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: white;
+            margin: 0 0 20px;
+        }
+
+        .about-hero p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-section.reverse {
+            direction: rtl;
+        }
+
+        .about-section.reverse>* {
+            direction: ltr;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #8B1538;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            color: #1A1A1A;
+            margin: 0 0 20px;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-item i {
+            width: 28px;
+            height: 28px;
+            background: #8B1538;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .feature-item span {
+            font-size: 0.9375rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #8B1538 0%, #6D1029 100%);
+            padding: 60px 5%;
+            margin: 0;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin: 0 0 8px;
+        }
+
+        .stat-item p {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-section.reverse {
+                direction: ltr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="bar" id="bar">
+        <a href="{% url 'home' %}" style="display: flex; align-items: center; text-decoration: none;">
+            <div class="head-logo">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" />
+            </div>
+            <h2>Civic Companion</h2>
+        </a>
+
+        <!-- Menu Tabs -->
+        <div class="body">
+            <div class="nav-links">
+                <a href="{% url 'home' %}" class="nav-item">Home</a>
+                <a href="{% url 'offerings' %}" class="nav-item">Offerings</a>
+                <a href="{% url 'about' %}" class="nav-item active">About</a>
+                <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-page">
+        <!-- Hero Section -->
+        <div class="about-hero">
+            <div class="container">
+                <div id="google_translate_element" style="text-align: right; margin-bottom: 10px;"></div>
+                <h1>About Civic Companion</h1>
+                <p>Your trusted partner in understanding Indian laws, human rights, and government initiatives.</p>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="about-content">
+            <!-- Mission Section -->
+            <div class="about-section">
+                <div class="about-image">
+                    <img src="{% static 'images/laws.jpg' %}" alt="Our Mission" />
+                </div>
+                <div class="about-text">
+                    <p class="subtitle">Our Mission</p>
+                    <h2>Your Rights Is Our Mission</h2>
+                    <p>
+                        Civic Companion was founded with a simple yet powerful mission: to make legal information
+                        accessible to every citizen of India. We believe that understanding the law is the first step
+                        toward justice.
+                    </p>
+                    <p>
+                        Our platform provides comprehensive coverage of Indian laws, from criminal and civil codes to
+                        constitutional rights, all explained in simple, easy-to-understand language.
+                    </p>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Comprehensive Coverage</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Easy to Understand</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Multiple Languages</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Regular Updates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="about-section reverse">
+                <div class="about-image">
+                    <img src="{% static 'images/rights.webp' %}" alt="Our Vision" />
+                </div>
+                <div class="about-text">
+                    <p class="subtitle">Our Vision</p>
+                    <h2>Empowering Every Citizen</h2>
+                    <p>
+                        We envision a society where every individual understands their legal rights and
+                        responsibilities. Knowledge of the law empowers citizens to make informed decisions and stand up
+                        for justice.
+                    </p>
+                    <p>
+                        Human rights are fundamental freedoms that ensure equality, justice, and dignity for all.
+                        Through our platform, we aim to spread awareness about these essential rights.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50K+</h3>
+                    <p>Laws Covered</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Free Access</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2+</h3>
+                    <p>Languages</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Civic Companion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ta,ml,te,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="{% static 'assets/script.js' %}"></script>
+</body>
+
+</html>

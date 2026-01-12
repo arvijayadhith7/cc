@@ -1,0 +1,173 @@
+﻿git : remote: 
+error: GH013: 
+Repository rule 
+violations found 
+for 
+refs/heads/master.  
+      
+At line:1 char:1
++ git push -u 
+origin master > 
+push_output.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (remo   
+ te: error: ...m    
+aster.        :    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+remote: 
+remote: - GITHUB 
+PUSH PROTECTION     
+   
+remote:   ——————————
+————————————————————
+———————————        
+remote:     Resolve 
+the following 
+violations before 
+pushing again       
+ 
+remote: 
+remote:     - Push 
+cannot contain 
+secrets        
+remote: 
+remote:             
+remote:      (?) 
+Learn how to 
+resolve a blocked 
+push        
+remote:      https:/
+/docs.github.com/cod
+e-security/secret-sc
+anning/working-with-
+secret-scanning-and-
+push-protection/work
+ing-with-push-protec
+tion-from-the-comman
+d-line#resolving-a-b
+locked-push        
+remote:             
+remote:             
+remote:       —— 
+OpenAI API Key —————
+————————————————————
+———————————        
+remote:        
+locations:        
+remote:          - 
+commit: c135bd94cacf
+ebbd99ee7aad60e1e0b8
+204060e7        
+remote:            
+path: cc/cc/cc/__pyc
+ache__/settings.cpyt
+hon-311.pyc:14      
+  
+remote:          - 
+commit: c135bd94cacf
+ebbd99ee7aad60e1e0b8
+204060e7        
+remote:            
+path: cc/cc/cc/__pyc
+ache__/settings.cpyt
+hon-313.pyc:16      
+  
+remote:             
+remote:        (?) 
+To push, remove 
+secret from 
+commit(s) or follow 
+this URL to allow 
+the secret.        
+remote:        https
+://github.com/arvija
+yadhith7/cc/security
+/secret-scanning/unb
+lock-secret/389wp3gA
+rKQHmLVzeCLpeKlkJF1 
+       
+remote:             
+remote:             
+remote:       —— 
+OpenAI API Key —————
+————————————————————
+———————————        
+remote:        
+locations:        
+remote:          - 
+commit: c135bd94cacf
+ebbd99ee7aad60e1e0b8
+204060e7        
+remote:            
+path: cc/cc/cc/__pyc
+ache__/settings.cpyt
+hon-314.pyc:17      
+  
+remote:             
+remote:        (?) 
+To push, remove 
+secret from 
+commit(s) or follow 
+this URL to allow 
+the secret.        
+remote:        https
+://github.com/arvija
+yadhith7/cc/security
+/secret-scanning/unb
+lock-secret/389wp4ZU
+CcD08oxChIjuVVll8hV 
+       
+remote:             
+remote:             
+remote:       —— 
+OpenAI API Key —————
+————————————————————
+———————————        
+remote:        
+locations:        
+remote:          - 
+commit: c135bd94cacf
+ebbd99ee7aad60e1e0b8
+204060e7        
+remote:            
+path: cc/cc/cc/setti
+ngs.py:24        
+remote:             
+remote:        (?) 
+To push, remove 
+secret from 
+commit(s) or follow 
+this URL to allow 
+the secret.        
+remote:        https
+://github.com/arvija
+yadhith7/cc/security
+/secret-scanning/unb
+lock-secret/389wp0TX
+snRuKEMjZgbrGwy2aol 
+       
+remote:             
+remote: 
+remote: 
+To https://github.co
+m/arvijayadhith7/cc.
+git
+ ! [remote 
+rejected] master -> 
+master (push 
+declined due to 
+repository rule 
+violations)
+error: failed to 
+push some refs to 'h
+ttps://github.com/ar
+vijayadhith7/cc.git'

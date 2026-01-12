@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Civic Companion - What We Offer</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" alt="#icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <style>
+        /* Services Section reused styles */
+        .services-section {
+            padding: 80px 0;
+            background: white;
+            min-height: 60vh;
+            /* Ensure it takes up some space */
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #8B1538;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 600;
+            color: #1A1A1A;
+            margin: 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Responsive grid */
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            justify-content: center;
+            /* Center items if less than 3 */
+        }
+
+        .service-card {
+            background: #FAFAFA;
+            border: 1px solid #E5E5E5;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            /* meaningful block for achor */
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #8B1538;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #8B1538;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-icon i {
+            font-size: 1.75rem;
+            color: #8B1538;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin: 0 0 12px;
+        }
+
+        .service-card p {
+            font-size: 0.9375rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- Navigation Bar -->
+    <div class="bar" id="bar">
+        <div style="display: flex; align-items: center;">
+            <a href="{% url 'home' %}" class="head-logo"
+                style="display: flex; align-items: center; text-decoration: none;">
+                <div class="head-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="Civic Companion" />
+                </div>
+                <h2>Civic Companion</h2>
+            </a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'category' %}">Services</a></li>
+                <li><a href="{% url 'offerings' %}">Offerings</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Menu Tabs -->
+        <div class="body">
+            <div class="nav-links">
+                <a href="{% url 'home' %}" class="nav-item">Home</a>
+                <a href="{% url 'offerings' %}" class="nav-item active">Offerings</a>
+                <a href="{% url 'about' %}" class="nav-item">About</a>
+                <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section (What We Offer) -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <div id="google_translate_element" style="text-align: right; margin-bottom: 10px;"></div>
+            <h2 class="section-title">What We Offer</h2>
+        </div>
+        <div class="services-grid">
+            <a href="{% url 'category' %}" class="service-card animate-fade-in">
+                <img src="{% static 'images/laws.jpg' %}" alt="Indian Laws" />
+                <div class="service-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3>Indian Laws</h3>
+                <p>Explore the comprehensive legal framework of India with detailed explanations.</p>
+            </a>
+            <a href="{% url 'right:rights_list' %}" class="service-card animate-fade-in">
+                <img src="{% static 'images/rights.webp' %}" alt="Human Rights" />
+                <div class="service-icon">
+                    <i class="fas fa-dove"></i>
+                </div>
+                <h3>Human Rights</h3>
+                <p>Understand your fundamental rights and how they protect your dignity.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div id="google_translate_element" style="margin-bottom: 10px;"></div>
+            <p>&copy; 2026 Civic Companion. All rights reserved.</p>
+        </div>
+
+        <!-- Scroll Arrow -->
+        <a href="#top" class="scroll-to-top" id="element">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="34" fill="currentColor"
+                class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
+            </svg>
+        </a>
+    </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ta,ml,te,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="{% static 'assets/script.js' %}"></script>
+    <script>
+        // Hamburger menu toggle
+        document.getElementById('hamburger-menu').addEventListener('click', function () {
+            this.classList.toggle('active');
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

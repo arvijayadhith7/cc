@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civic Companion - Categories Hub</title>
+  <link rel="icon" href="{% static 'images/icon.png' %}" alt="#icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+</head>
+
+<body>
+
+
+  <!-- Navigation Bar -->
+  <div class="bar" id="bar">
+    <div style="display: flex; align-items: center;">
+      <a href="{% url 'home' %}" class="head-logo" style="display: flex; align-items: center; text-decoration: none;">
+        <div class="head-logo">
+          <img src="{% static 'images/logo.png' %}" alt="Civic Companion" />
+        </div>
+        <h2>Civic Companion</h2>
+      </a>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <div class="hamburger-menu" id="hamburger-menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'category' %}">Services</a></li>
+        <li><a href="{% url 'offerings' %}">Offerings</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menu Tabs -->
+    <div class="body">
+      <div class="nav-links">
+        <a href="{% url 'home' %}" class="nav-item">Home</a>
+        <a href="{% url 'offerings' %}" class="nav-item">Offerings</a>
+        <a href="{% url 'about' %}" class="nav-item">About</a>
+        <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="categories-hub">
+    <header class="categories-header">
+      <div id="google_translate_element" style="text-align: right; margin-bottom: 10px;"></div>
+
+      <p class="categories-subtitle">Legal Library</p>
+      <h1>What We Offer</h1>
+    </header>
+
+    <div class="categories-container">
+      <div class="categories-grid-new">
+        {% for i in data %}
+        {% if forloop.counter|divisibleby:4 %}
+        <a href="/categories/{{i.category}}/act" class="category-card-new maroon animate-fade-in">
+          {% elif forloop.counter|divisibleby:2 %}
+          <a href="/categories/{{i.category}}/act" class="category-card-new light animate-fade-in">
+            {% else %}
+            <a href="/categories/{{i.category}}/act" class="category-card-new dark animate-fade-in">
+              {% endif %}
+              <div class="category-image-new">
+                <img src="{% static 'images/' %}{{ i.category }}.jpeg" alt="{{ i.category }}" />
+              </div>
+              <div class="category-content-new">
+                <h2>{{ i.category }}</h2>
+                <p>{{ i.description }}</p>
+              </div>
+            </a>
+            {% empty %}
+            <p style="grid-column: 1 / -1; text-align: center; color: #666;">No categories available.</p>
+            {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Civic Companion. All rights reserved.</p>
+    </div>
+
+    <!-- Scroll Arrow -->
+    <a href="#top" class="scroll-to-top" id="element">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="34" fill="currentColor" class="bi bi-arrow-up-circle"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
+      </svg>
+    </a>
+  </footer>
+
+  <script src="{% static 'assets/script.js' %}"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ta,ml,te,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

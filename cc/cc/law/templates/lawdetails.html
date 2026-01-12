@@ -1,0 +1,498 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civic Companion - {{ law.title|default:"Law Details" }}</title>
+  <link rel="icon" href="{% static 'images/icon.png' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* Specific styles to match the premium reference */
+    body {
+      background-color: #F8F8F8;
+    }
+
+    .lawdetails-main {
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+
+    .law-details-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #E5E5E5;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+      border-left: 4px solid #8B1538;
+      padding-left: 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #1A1A1A;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+
+    .section-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #666;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-meta-item i {
+      color: #8B1538;
+      font-size: 0.9rem;
+      width: 20px;
+    }
+
+    .law-content-box {
+      background: #FAFAFA;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      border: 1px solid #F0F0F0;
+    }
+
+    .law-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-action {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .btn-maroon {
+      background-color: #8B1538;
+      color: white;
+      border: 1px solid #8B1538;
+    }
+
+    .btn-maroon:hover {
+      background-color: #6D1029;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #1A1A1A;
+      border: 1px solid #DDD;
+    }
+
+    .btn-outline:hover {
+      border-color: #8B1538;
+      color: #8B1538;
+    }
+
+    .law-nav {
+      max-width: 900px;
+      margin: 30px auto 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .law-nav a {
+      color: #666;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .law-nav a:hover {
+      color: #8B1538;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="bar" id="bar">
+    <div style="display: flex; align-items: center;">
+      <a href="{% url 'home' %}" class="head-logo" style="display: flex; align-items: center; text-decoration: none;">
+        <div class="head-logo">
+          <img src="{% static 'images/logo.png' %}" alt="Civic Companion" />
+        </div>
+        <h2>Civic Companion</h2>
+      </a>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <div class="hamburger-menu" id="hamburger-menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'category' %}">Services</a></li>
+        <li><a href="{% url 'offerings' %}">Offerings</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menu Tabs -->
+    <div class="body">
+      <div class="nav-links">
+        <a href="{% url 'home' %}" class="nav-item">Home</a>
+        <a href="{% url 'offerings' %}" class="nav-item">Offerings</a>
+        <a href="{% url 'about' %}" class="nav-item">About</a>
+        <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="header-spacer" style="height: auto; background: #FAFAFA; margin-top: 120px; padding-bottom: 20px;">
+    <div class="container" style="text-align: center; padding-top: 40px;">
+      <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #1A1A1A; margin: 0;">Law Details</h1>
+    </div>
+  </div>
+
+  <main class="lawdetails-main">
+    <div class="container">
+      {% if data %}
+      {% for law in data %}
+      <div class="law-details-card animate-fade-in">
+
+        <!-- English Content -->
+        <div class="english-content">
+          <div class="section-header">
+            <h2 class="section-title">Section {{ law.section }}</h2>
+            <div class="section-meta">
+              <div class="section-meta-item">
+                <i class="fas fa-book"></i>
+                <span><strong>Chapter:</strong> {{ law.chapter }}</span>
+              </div>
+              {% if law.title %}
+              <div class="section-meta-item">
+                <i class="fas fa-heading"></i>
+                <span><strong>Title:</strong> {{ law.title }}</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="law-content-box law-desc-full">
+            {{ law.description|linebreaks }}
+          </div>
+
+          <div class="law-content-box law-desc-summary"
+            style="display:none; background-color: #FFF5F7; border-color: #FFE0E6;">
+            <p><strong><i class="fas fa-file-alt"></i> Summary:</strong></p>
+            {{ law.summary|linebreaks }}
+          </div>
+        </div>
+
+        <!-- Tamil Content -->
+        <div class="tamil-content" style="display:none;">
+          <div class="section-header">
+            <h2 class="section-title">பிரிவு {{ law.section }}</h2>
+            <div class="section-meta">
+              <div class="section-meta-item">
+                <i class="fas fa-book"></i>
+                <span><strong>அத்தியாயம்:</strong> {{ law.chapter }}</span>
+              </div>
+              {% if law.title_ta %}
+              <div class="section-meta-item">
+                <i class="fas fa-heading"></i>
+                <span><strong>தலைப்பு:</strong> {{ law.title_ta }}</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="law-content-box law-desc-full">
+            {{ law.description_ta|linebreaks }}
+          </div>
+
+          <div class="law-content-box law-desc-summary"
+            style="display:none; background-color: #FFF5F7; border-color: #FFE0E6;">
+            <p><strong><i class="fas fa-file-alt"></i> சுருக்கம்:</strong></p>
+            {{ law.summary_ta|linebreaks }}
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="law-actions" style="align-items: center;">
+          <!-- Inline Google Translate -->
+          <div id="google_translate_element"></div>
+
+          <!-- Summarize Toggle -->
+          <button class="btn-action btn-maroon" id="summary-btn">
+            <i class="fas fa-compress-alt"></i> Summarize
+          </button>
+
+          <!-- Speak Button -->
+          <button class="btn-action btn-outline" id="speak-btn">
+            <i class="fas fa-volume-up"></i> Listen
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="law-nav">
+        {% if prev_section %}
+        <a href="{% url 'lawdetails' tname=tname act=act cno=chapter_number lno=prev_section.section %}">
+          <i class="fas fa-arrow-left"></i> Previous Section
+        </a>
+        {% else %}
+        <div></div>
+        {% endif %}
+
+        <a href="{% url 'section' tname=tname act=act no=chapter_number %}">
+          <i class="fas fa-list"></i> Back to List
+        </a>
+
+        {% if next_section %}
+        <a href="{% url 'lawdetails' tname=tname act=act cno=chapter_number lno=next_section.section %}">
+          Next Section <i class="fas fa-arrow-right"></i>
+        </a>
+        {% else %}
+        <div></div>
+        {% endif %}
+      </div>
+
+      {% endfor %}
+      {% else %}
+      <div class="law-details-card">
+        <p>No details available.</p>
+        <a href="{% url 'section' tname=tname act=act no=chapter_number %}" class="btn-action btn-maroon">
+          Return to Chapter
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div id="google_translate_element" style="margin-bottom: 10px;"></div>
+      <p>&copy; 2026 Civic Companion. All rights reserved.</p>
+    </div>
+    <a href="#top" class="scroll-to-top" id="element">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="34" fill="currentColor" class="bi bi-arrow-up-circle"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
+      </svg>
+    </a>
+  </footer>
+
+
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ta,ml,te,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="{% static 'assets/script.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const translateBtn = document.getElementById('translate-btn');
+      const resetBtn = document.getElementById('reset-btn');
+      const summaryBtn = document.getElementById('summary-btn');
+      const summaryText = summaryBtn.querySelector('span') || summaryBtn; // Handle icon+text or just text
+
+      let isTamil = false;
+      let isSummary = false;
+
+      // Translate Button Logic
+      if (translateBtn) {
+        translateBtn.addEventListener('click', function () {
+          document.querySelectorAll('.english-content').forEach(el => el.style.display = 'none');
+          document.querySelectorAll('.tamil-content').forEach(el => el.style.display = 'block');
+          translateBtn.style.display = 'none';
+          resetBtn.style.display = 'inline-flex';
+          isTamil = true;
+          // Reset summary state when switching languages to avoid confusion, or keep it. 
+          // Let's keep appearance consistent.
+          updateContentVisibility();
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          document.querySelectorAll('.english-content').forEach(el => el.style.display = 'block');
+          document.querySelectorAll('.tamil-content').forEach(el => el.style.display = 'none');
+          resetBtn.style.display = 'none';
+          translateBtn.style.display = 'inline-flex';
+          isTamil = false;
+          updateContentVisibility();
+        });
+      }
+
+      // Summary Button Logic
+      if (summaryBtn) {
+        summaryBtn.addEventListener('click', function () {
+          isSummary = !isSummary;
+          // Toggle button style/text
+          if (isSummary) {
+            summaryBtn.innerHTML = '<i class="fas fa-expand-alt"></i> Show Full Text';
+            summaryBtn.classList.remove('btn-maroon');
+            summaryBtn.classList.add('btn-outline');
+          } else {
+            summaryBtn.innerHTML = '<i class="fas fa-compress-alt"></i> Summarize';
+            summaryBtn.classList.add('btn-maroon');
+            summaryBtn.classList.remove('btn-outline');
+          }
+          updateContentVisibility();
+        });
+      }
+
+      function updateContentVisibility() {
+        // Determine active language container
+        const langClass = isTamil ? '.tamil-content' : '.english-content';
+        const container = document.querySelector(langClass);
+
+        if (container) {
+          const fullText = container.querySelector('.law-desc-full');
+          const summaryText = container.querySelector('.law-desc-summary');
+
+          if (fullText && summaryText) {
+            if (isSummary) {
+              fullText.style.display = 'none';
+              summaryText.style.display = 'block';
+            } else {
+              fullText.style.display = 'block';
+              summaryText.style.display = 'none';
+            }
+          }
+        }
+      }
+
+      // Speak Button Logic
+      const speakBtn = document.getElementById('speak-btn');
+      let isSpeaking = false;
+      let utterance = null;
+
+      if (speakBtn) {
+        speakBtn.addEventListener('click', function () {
+          if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            speakBtn.innerHTML = '<i class="fas fa-volume-up"></i> Listen';
+            speakBtn.classList.remove('btn-maroon');
+            speakBtn.classList.add('btn-outline');
+            return;
+          }
+
+          // Determine text to speak
+          const englishContent = document.querySelector('.english-content');
+          const tamilContent = document.querySelector('.tamil-content');
+
+          // Default to English if visible or both hidden (initial state usually English)
+          let container = englishContent;
+          if (tamilContent && tamilContent.style.display === 'block') {
+            container = tamilContent;
+          }
+
+          if (container) {
+            const fullText = container.querySelector('.law-desc-full');
+            const summaryText = container.querySelector('.law-desc-summary');
+
+            let textElement = fullText;
+            if (summaryText && summaryText.style.display === 'block') {
+              textElement = summaryText;
+            }
+
+            if (textElement) {
+              let textToSpeak = textElement.innerText;
+
+              // Cleanup text
+              if (textToSpeak.trim().length > 0) {
+                utterance = new SpeechSynthesisUtterance(textToSpeak);
+
+                // Language Detection Logic
+                let lang = 'en-US'; // Default
+
+                // Check Google Translate Widget status
+                const gtCombo = document.querySelector('.goog-te-combo');
+                const gtLang = gtCombo ? gtCombo.value : '';
+
+                if (gtLang === 'ta' || (container === tamilContent)) {
+                  lang = 'ta-IN'; // Tamil
+                } else if (gtLang === 'ml') {
+                  lang = 'ml-IN'; // Malayalam
+                } else if (gtLang === 'hi') {
+                  lang = 'hi-IN'; // Hindi
+                } else if (gtLang === 'te') {
+                  lang = 'te-IN'; // Telugu
+                }
+
+                utterance.lang = lang;
+
+                utterance.onend = function () {
+                  isSpeaking = false;
+                  speakBtn.innerHTML = '<i class="fas fa-volume-up"></i> Listen';
+                  speakBtn.classList.remove('btn-maroon');
+                  speakBtn.classList.add('btn-outline');
+                };
+
+                window.speechSynthesis.speak(utterance);
+                isSpeaking = true;
+                speakBtn.innerHTML = '<i class="fas fa-stop"></i> Stop';
+                speakBtn.classList.remove('btn-outline');
+                speakBtn.classList.add('btn-maroon');
+              }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
