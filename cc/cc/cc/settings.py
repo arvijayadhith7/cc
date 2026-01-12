@@ -20,8 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--qyr1+hz4#5p4wn@ka+aht6ox0etpv*cg@!pe0&)2n!f31%-ii'
-OPENAI_API_KEY = "your-openai-api-key-here"
+import os
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--qyr1+hz4#5p4wn@ka+aht6ox0etpv*cg@!pe0&)2n!f31%-ii')
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "your-openai-api-key-here")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -134,7 +135,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
