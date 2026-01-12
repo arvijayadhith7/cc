@@ -84,6 +84,10 @@ DATABASES = {
     }
 }
 
+# Fallback for Render if DB is in a different nested level
+if not (BASE_DIR / 'CC.db').exists():
+    DATABASES['default']['NAME'] = Path(__file__).resolve().parent.parent.parent.parent / 'CC.db'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
