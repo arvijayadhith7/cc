@@ -84,9 +84,16 @@ DATABASES = {
     }
 }
 
-# Fallback for Render if DB is in a different nested level
-if not (BASE_DIR / 'CC.db').exists():
-    DATABASES['default']['NAME'] = Path(__file__).resolve().parent.parent.parent.parent / 'CC.db'
+# Fallback for Render deployment environments (search root and parent)
+if not DATABASES['default']['NAME'].exists():
+    paths_to_check = [
+        Path(__file__).resolve().parent.parent.parent / 'CC.db',
+        Path(__file__).resolve().parent.parent.parent.parent / 'CC.db'
+    ]
+    for p in paths_to_check:
+        if p.exists():
+            DATABASES['default']['NAME'] = p
+            break
 
 
 # Password validation
