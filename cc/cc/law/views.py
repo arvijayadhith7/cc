@@ -91,6 +91,13 @@ def chatbot_response(request):
         # Combine into a list of (app_label, model_name)
         search_targets = [('law', m) for m in law_models] + [('right', m) for m in right_models]
         
+        # Pre-fetch law category mapping to avoid N+1 queries
+        try:
+            law_list_model = apps.get_model('law', 'Lawtablelist')
+            law_mapping = {obj.tname: obj.category for obj in law_list_model.objects.all()}
+        except:
+            law_mapping = {}
+
         # Search logic
         found = False
         response_text = ""
@@ -99,30 +106,32 @@ def chatbot_response(request):
             try:
                 model = apps.get_model(app_label, model_name)
                 # Search in title, description, and summary
-                # Prioritize title matches
                 matches = model.objects.filter(
                     Q(title__icontains=query) | 
                     Q(description__icontains=query) |
                     Q(summary__icontains=query)
-                )[:1] # Get top 1 per model to avoid spam
+                )[:1] 
                 
                 for match in matches:
                     found = True
                     
-                    # Safer attribute access
                     title = getattr(match, 'title', 'No Title')
-                    # 'section' exists in both apps' models based on check
-                    section = getattr(match, 'section', '')
-                    chapter = getattr(match, 'chapter', '')
+                    section = getattr(match, 'section', '1')
+                    chapter = getattr(match, 'chapter', '1')
                     summary = getattr(match, 'summary', '')
                     description = getattr(match, 'description', '')
                     
-                    # Use summary if available and not empty, else description truncation
                     content = summary if summary else (description[:200] + "..." if description else "")
-                    
-                    # Determine Context Label
                     context_label = "Legal Framework" if app_label == 'law' else "Human Rights & Welfare"
                     
+                    # Construct Detail URL
+                    detail_url = "#"
+                    if app_label == 'law':
+                        category_slug = law_mapping.get(model_name, "Criminal") # Default to Criminal if mapping fails
+                        detail_url = f"/categories/{category_slug}/act/{model_name}/chapter_list/chapter/{chapter}/law/{section}/"
+                    else:
+                        detail_url = f"/right/{model_name}/section/{section}/"
+
                     response_text += f"""
                     <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 16px; margin-bottom: 12px; border-left: 4px solid #8B1538; text-align: left;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee; padding-bottom: 6px;">
@@ -134,9 +143,12 @@ def chatbot_response(request):
                             <span style="background: #f8f8f8; padding: 4px 8px; border-radius: 4px; border: 1px solid #eee;"><strong>Chapter:</strong> {chapter}</span>
                             <span style="background: #f8f8f8; padding: 4px 8px; border-radius: 4px; border: 1px solid #eee;"><strong>Section:</strong> {section}</span>
                         </div>
-                        <div style="font-size: 0.95rem; line-height: 1.6; color: #333;">
+                        <div style="font-size: 0.95rem; line-height: 1.6; color: #333; margin-bottom: 12px;">
                             {content}
                         </div>
+                        <a href="{detail_url}" target="_blank" style="display: inline-block; background: #8B1538; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: background 0.3s;" onmouseover="this.style.background='#6D1029'" onmouseout="this.style.background='#8B1538'">
+                            Read Full Section <i class="fas fa-external-link-alt" style="margin-left: 4px; font-size: 0.75rem;"></i>
+                        </a>
                     </div>
                     """
                     
