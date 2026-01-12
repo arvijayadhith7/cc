@@ -78,7 +78,9 @@
             {% else %}
             <a href="/categories/{{i.category}}/act" class="category-card-new dark animate-fade-in">
               {% endif %}
-              <img src="{% static 'images/' %}{{ i.category|lower }}.jpeg" alt="{{ i.category }}" />
+              <div class="category-image-new">
+                <img src="{% static 'images/' %}{{ i.category|lower }}.jpeg" alt="{{ i.category }}" />
+              </div>
               <div class="category-content-new">
                 <h2>{{ i.category }}</h2>
                 <p>{{ i.description }}</p>
