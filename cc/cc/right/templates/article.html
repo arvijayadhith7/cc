@@ -82,7 +82,7 @@
             <a href="/rights/{{ tn }}/section/{{ chap.section }}" class="category-card-new dark animate-fade-in">
               {% endif %}
               <div class="category-image-new">
-                <img src="{% static 'images/' %}{{ tn }}.jpeg" alt="Section" />
+                <img src="{% static 'images/' %}{{ tn|lower }}.jpeg" alt="Section" />
               </div>
               <div class="category-content-new">
                 <h2>Section {{ chap.section }}</h2>

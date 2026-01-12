@@ -80,7 +80,7 @@
             <a href="/rights/{{ i.tname }}" class="category-card-new dark animate-fade-in">
               {% endif %}
               <div class="category-image-new">
-                <img src="{% static 'images/' %}{{ i.tname }}.jpeg" alt="{{ i.name }}" />
+                <img src="{% static 'images/' %}{{ i.tname|lower }}.jpeg" alt="{{ i.name }}" />
               </div>
               <div class="category-content-new">
                 <h2>{{ i.name }}</h2>

@@ -84,7 +84,7 @@
               {% endif %}
               <div class="category-image-new">
                 <!-- Using generic section icon/image -->
-                <img src="{% static 'images/' %}{{ tname }}.jpeg" alt="Section" />
+                <img src="{% static 'images/' %}{{ tname|lower }}.jpeg" alt="Section" />
               </div>
               <div class="category-content-new">
                 <h2>Section {{ chap.section }}</h2>
