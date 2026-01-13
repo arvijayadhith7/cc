@@ -83,7 +83,7 @@
               class="category-card-new dark animate-fade-in">
               {% endif %}
               <div class="category-image-new">
-                <img src="{% static 'images/' %}{{ tname }}.jpeg" alt="Chapter" />
+                <img src="{% static 'images/' %}{{ tname|lower }}.jpeg" alt="Chapter" />
               </div>
               <div class="category-content-new">
                 <h2>Chapter {{ chap.chapter }}</h2>

@@ -1,0 +1,23 @@
+﻿Criminal|Bns|Bharatiya Nyaya Sanhita, 2023
+Criminal|ChildProtection|The Protection of Children from Sexual Offences (POCSO) Act, 2012
+Criminal|WomenProtection|The Protection of Women from Domestic Violence Act, 2005
+Criminal|MoneyLaundering|The Prevention of Money Laundering Act, 2002
+Criminal|ChildMarriage|The Prohibition of Child Marriage Act, 2006
+Criminal|JuvenileJustice|The Juvenile Justice (Care and Protection of Children) Act, 2015
+Infrastructure|Electricity|The Electricity Act, 2003
+Infrastructure|PetroleumAndNaturalGas|The Petroleum and Natural Gas Regulatory Board Act, 2006
+Transport|MotorVehicles|The Motor Vehicles Act, 1988 (Amended 2019)
+Transport|NationalHighways|The National Highways Act, 1956
+Technology|IT|The Information Technology Act, 2000
+Consumer|Companies|The Companies Act, 2013
+Consumer|ConsumerProtection|The Consumer Protection Act, 2019
+Consumer|Competition|The Competition Act, 2002
+Land|RealEstate|The Real Estate (Regulation and Development) Act, 2016 (RERA)
+Environment|Evs|The Environment (Protection) Act, 1986
+Environment|Air|The Air (Prevention and Control of Pollution) Act, 1981
+Environment|Water|The Water (Prevention and Control of Pollution) Act, 1974
+Environment|Forest|The Indian Forest Act, 1927
+Environment|Wildlife|The Wildlife (Protection) Act, 1972
+Marriage|HinduMarriage|The Hindu Marriage Act, 1955
+Marriage|Divorce|The Divorce Act, 1869 (for Christians)
+Marriage|SpecialMarriage|The Special Marriage Act, 1954
