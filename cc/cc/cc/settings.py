@@ -137,12 +137,15 @@ STATICFILES_DIRS = [
     BASE_DIR / "law" / "static",
     BASE_DIR / "right" / "static",
 ]
+
+# WhiteNoise configuration
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
+WHITENOISE_USE_FINDERS = True
 WHITENOISE_MANIFEST_STRICT = False
 
 # Default primary key field type
